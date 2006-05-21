@@ -14,7 +14,7 @@ BuildRequires:	java-gnu-inetlib
 Requires:	jre
 Provides:	javamail = 1.3
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664}
+ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
