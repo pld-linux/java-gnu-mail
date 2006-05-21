@@ -1,4 +1,3 @@
-#
 Summary:	GNU JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
@@ -10,6 +9,7 @@ Source0:	http://ftp.gnu.org/gnu/classpathx/mail-%{version}.tar.gz
 URL:		http://www.gnu.org/software/classpathx/javamail/javamail.html
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
+BuildRequires:	java-gnu-activation
 BuildRequires:	java-gnu-inetlib
 Requires:	jre
 Provides:	javamail = 1.3
