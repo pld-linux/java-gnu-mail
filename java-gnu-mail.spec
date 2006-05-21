@@ -1,3 +1,4 @@
+%include	/usr/lib/rpm/macros.java
 Summary:	GNU JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
@@ -11,6 +12,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	java-gnu-activation
 BuildRequires:	java-gnu-inetlib
+BuildRequires:	jpackage-utils
 Requires:	jre
 Provides:	javamail = 1.3
 BuildArch:	noarch
@@ -45,8 +47,8 @@ Dokumentacja API GNU JavaMail.
 %{__automake}
 # Sun java requires . in CLASSPATH for configure test
 export CLASSPATH=.
-export JAVAC=%{_bindir}/javac
-export JAVA=%{_bindir}/java
+export JAVAC=%{javac}
+export JAVA=%{java}
 %configure
 
 %{__make}
@@ -57,6 +59,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# should it be javamail.jar or mail.jar (or both)?  log4j's build.xml
+# seeks for the former, sun's javamail contains the latter.
+ln -s gnumail.jar $RPM_BUILD_ROOT%{_javadir}/javamail.jar
 
 %clean
 rm -rf $RPM_BUILD_ROOT
