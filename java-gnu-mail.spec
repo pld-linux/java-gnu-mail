@@ -12,7 +12,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	java-gnu-activation
 BuildRequires:	java-gnu-inetlib
-BuildRequires:	jpackage-utils
+BuildRequires:	rpm-javaprov
 Requires:	jre
 Provides:	javamail = 1.3
 BuildArch:	noarch
