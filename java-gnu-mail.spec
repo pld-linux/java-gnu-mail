@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.java
 Summary:	GNU implementation of JavaMail API specification
 Summary(pl):	Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
@@ -13,7 +12,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	java-gnu-activation
 BuildRequires:	java-gnu-inetlib
-BuildRequires:	rpm-javaprov
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jre
 Provides:	javamail = 1.3
 BuildArch:	noarch
