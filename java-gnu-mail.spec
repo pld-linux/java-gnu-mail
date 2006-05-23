@@ -1,5 +1,6 @@
 %include	/usr/lib/rpm/macros.java
-Summary:	GNU JavaMail
+Summary:	GNU implementation of JavaMail API specification
+Summary(pl):	Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
 Release:	1
@@ -26,6 +27,14 @@ without reference to Sun's code, which allows GNU JavaMail to be used
 on a completely free operating system such as GNU/Linux or the Hurd.
 The code is optimized to work with free Java implementations, nothing
 prevents it from being used with any compliant JVM.
+
+%description -l pl
+GNU JavaMail to wolnodostêpna implementacja specyfikacji API JavaMail
+w wersji 1.3. Ca³y kod zosta³ napisany od zera bez wykorzystania kodu
+Suna, co pozwala na u¿ywanie GNU JavaMail w ca³kowicie wolnodostêpnych
+systemach, takich jak GNU/Linux czy Hurd. Kod zosta³ zoptymalizowany
+pod k±tem wolnodostêpnych implementacji Javy, ale nic nie powstrzymuje
+przed wykorzystaniem go z dowolnym zgodnym JVM-em.
 
 %package doc
 Summary:	API documentation for GNU JavaMail
