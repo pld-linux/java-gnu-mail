@@ -12,6 +12,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	java-gnu-activation
 BuildRequires:	java-gnu-inetlib
+BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jre
 Provides:	javamail = 1.3
@@ -35,15 +36,15 @@ systemach, takich jak GNU/Linux czy Hurd. Kod zosta³ zoptymalizowany
 pod k±tem wolnodostêpnych implementacji Javy, ale nic nie powstrzymuje
 przed wykorzystaniem go z dowolnym zgodnym JVM-em.
 
-%package doc
+%package javadoc
 Summary:	API documentation for GNU JavaMail
 Summary(pl):	Dokumentacja API GNU JavaMail
 Group:		Documentation
 
-%description doc
+%description javadoc
 API documentation for GNU JavaMail.
 
-%description doc -l pl
+%description javadoc -l pl
 Dokumentacja API GNU JavaMail.
 
 %prep
@@ -53,8 +54,7 @@ Dokumentacja API GNU JavaMail.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-# Sun java requires . in CLASSPATH for configure test
-export CLASSPATH=.
+unset CLASSPATH || :
 export JAVAC=%{javac}
 export JAVA=%{java}
 %configure
@@ -64,13 +64,17 @@ export JAVA=%{java}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# should it be javamail.jar or mail.jar (or both)?  log4j's build.xml
-# seeks for the former, sun's javamail contains the latter.
-ln -s gnumail.jar $RPM_BUILD_ROOT%{_javadir}/javamail.jar
+mv $RPM_BUILD_ROOT{%{_javadir}/gnumail.jar,gnumail-%{version}.jar}
+ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/gnumail.jar
+ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/mail.jar
+ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/mailapi.jar
+
+cp -R docs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,6 +84,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README* source/javax/mail/*.html
 %{_javadir}/*.jar
 
-%files doc
+%files javadoc
 %defattr(644,root,root,755)
-%doc docs/*
+%doc %{_javadocdir}/%{name}-%{version}
