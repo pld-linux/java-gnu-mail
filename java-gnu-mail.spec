@@ -2,7 +2,7 @@ Summary:	GNU implementation of JavaMail API specification
 Summary(pl):	Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/classpathx/mail-%{version}.tar.gz
@@ -70,7 +70,7 @@ install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT{%{_javadir}/gnumail.jar,gnumail-%{version}.jar}
+mv $RPM_BUILD_ROOT%{_javadir}/{gnumail.jar,gnumail-%{version}.jar}
 ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/gnumail.jar
 ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/mail.jar
 ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/mailapi.jar
