@@ -40,6 +40,7 @@ przed wykorzystaniem go z dowolnym zgodnym JVM-em.
 Summary:	API documentation for GNU JavaMail
 Summary(pl):	Dokumentacja API GNU JavaMail
 Group:		Documentation
+Obsoletes:	java-gnu-mail-doc
 
 %description javadoc
 API documentation for GNU JavaMail.
