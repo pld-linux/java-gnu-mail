@@ -2,7 +2,7 @@ Summary:	GNU implementation of JavaMail API specification
 Summary(pl):	Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/classpathx/mail-%{version}.tar.gz
@@ -40,6 +40,7 @@ przed wykorzystaniem go z dowolnym zgodnym JVM-em.
 Summary:	API documentation for GNU JavaMail
 Summary(pl):	Dokumentacja API GNU JavaMail
 Group:		Documentation
+Requires:	jpackage-utils
 Obsoletes:	java-gnu-mail-doc
 
 %description javadoc
