@@ -2,7 +2,7 @@ Summary:	GNU implementation of JavaMail API specification
 Summary(pl):	Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/classpathx/mail-%{version}.tar.gz
@@ -72,9 +72,15 @@ install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 	DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_javadir}/{gnumail.jar,gnumail-%{version}.jar}
+mv $RPM_BUILD_ROOT%{_javadir}/{gnumail-providers.jar,gnumail-providers-%{version}.jar}
 ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/gnumail.jar
 ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/mail.jar
 ln -s gnumail-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/mailapi.jar
+
+install -d $RPM_BUILD_ROOT%{_javadir}/javamail
+for prov in imap smtp pop3 nntp mbox maildir; do
+	ln -s ../gnumail-providers-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/javamail/$prov.jar
+done
 
 cp -R docs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
@@ -85,6 +91,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README* source/javax/mail/*.html
 %{_javadir}/*.jar
+%dir %{_javadir}/javamail
+%{_javadir}/javamail/*.jar
 
 %files javadoc
 %defattr(644,root,root,755)
