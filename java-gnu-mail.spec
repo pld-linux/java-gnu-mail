@@ -1,5 +1,5 @@
 Summary:	GNU implementation of JavaMail API specification
-Summary(pl):	Implementacja GNU specyfikacji JavaMail
+Summary(pl.UTF-8):   Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
 Release:	4
@@ -28,17 +28,17 @@ on a completely free operating system such as GNU/Linux or the Hurd.
 The code is optimized to work with free Java implementations, nothing
 prevents it from being used with any compliant JVM.
 
-%description -l pl
-GNU JavaMail to wolnodostêpna implementacja specyfikacji API JavaMail
-w wersji 1.3. Ca³y kod zosta³ napisany od zera bez wykorzystania kodu
-Suna, co pozwala na u¿ywanie GNU JavaMail w ca³kowicie wolnodostêpnych
-systemach, takich jak GNU/Linux czy Hurd. Kod zosta³ zoptymalizowany
-pod k±tem wolnodostêpnych implementacji Javy, ale nic nie powstrzymuje
+%description -l pl.UTF-8
+GNU JavaMail to wolnodostÄ™pna implementacja specyfikacji API JavaMail
+w wersji 1.3. CaÅ‚y kod zostaÅ‚ napisany od zera bez wykorzystania kodu
+Suna, co pozwala na uÅ¼ywanie GNU JavaMail w caÅ‚kowicie wolnodostÄ™pnych
+systemach, takich jak GNU/Linux czy Hurd. Kod zostaÅ‚ zoptymalizowany
+pod kÄ…tem wolnodostÄ™pnych implementacji Javy, ale nic nie powstrzymuje
 przed wykorzystaniem go z dowolnym zgodnym JVM-em.
 
 %package javadoc
 Summary:	API documentation for GNU JavaMail
-Summary(pl):	Dokumentacja API GNU JavaMail
+Summary(pl.UTF-8):   Dokumentacja API GNU JavaMail
 Group:		Documentation
 Requires:	jpackage-utils
 Obsoletes:	java-gnu-mail-doc
@@ -46,7 +46,7 @@ Obsoletes:	java-gnu-mail-doc
 %description javadoc
 API documentation for GNU JavaMail.
 
-%description javadoc -l pl
+%description javadoc -l pl.UTF-8
 Dokumentacja API GNU JavaMail.
 
 %prep
