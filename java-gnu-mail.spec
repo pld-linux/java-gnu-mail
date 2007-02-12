@@ -1,5 +1,5 @@
 Summary:	GNU implementation of JavaMail API specification
-Summary(pl.UTF-8):   Implementacja GNU specyfikacji JavaMail
+Summary(pl.UTF-8):	Implementacja GNU specyfikacji JavaMail
 Name:		java-gnu-mail
 Version:	1.1.1
 Release:	4
@@ -38,7 +38,7 @@ przed wykorzystaniem go z dowolnym zgodnym JVM-em.
 
 %package javadoc
 Summary:	API documentation for GNU JavaMail
-Summary(pl.UTF-8):   Dokumentacja API GNU JavaMail
+Summary(pl.UTF-8):	Dokumentacja API GNU JavaMail
 Group:		Documentation
 Requires:	jpackage-utils
 Obsoletes:	java-gnu-mail-doc
