@@ -4,7 +4,7 @@ Name:		java-gnu-mail
 Version:	1.1.2
 Release:	1
 License:	GPL
-Group:		Libraries
+Group:		Libraries/Java
 Source0:	http://ftp.gnu.org/gnu/classpathx/mail-%{version}.tar.gz
 # Source0-md5:	0a94ff4328ceb6a4131be96946976a33
 URL:		http://www.gnu.org/software/classpathx/javamail/javamail.html
@@ -17,7 +17,6 @@ BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jre
 Provides:	javamail = 1.3
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
