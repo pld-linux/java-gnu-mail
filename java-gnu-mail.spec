@@ -16,6 +16,7 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jre
 Provides:	javamail = 1.3
+Obsoletes:	javamail
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
