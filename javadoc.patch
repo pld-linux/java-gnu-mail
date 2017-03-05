@@ -1,0 +1,920 @@
+diff -ur mail-1.1.2/source/gnu/mail/util/QInputStream.java mail-1.1.2-javadoc/source/gnu/mail/util/QInputStream.java
+--- mail-1.1.2/source/gnu/mail/util/QInputStream.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/gnu/mail/util/QInputStream.java	2017-03-05 16:49:39.781025437 +0100
+@@ -55,6 +55,7 @@
+  * characters. (But see section 5 for restrictions.)  In
+  * particular, SPACE and TAB MUST NOT be represented as themselves
+  * within encoded words.
++ * </ol>
+  *
+  * @author <a href="mailto:dog@gnu.org">Chris Burdess</a>
+  */
+diff -ur mail-1.1.2/source/gnu/mail/util/QOutputStream.java mail-1.1.2-javadoc/source/gnu/mail/util/QOutputStream.java
+--- mail-1.1.2/source/gnu/mail/util/QOutputStream.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/gnu/mail/util/QOutputStream.java	2017-03-05 16:50:08.121375407 +0100
+@@ -82,6 +82,7 @@
+  * characters. (But see section 5 for restrictions.)  In
+  * particular, SPACE and TAB MUST NOT be represented as themselves
+  * within encoded words.
++ * </ol>
+  *
+  * @author <a href="mailto:dog@gnu.org">Chris Burdess</a>
+  */
+diff -ur mail-1.1.2/source/javax/mail/event/TransportEvent.java mail-1.1.2-javadoc/source/javax/mail/event/TransportEvent.java
+--- mail-1.1.2/source/javax/mail/event/TransportEvent.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/event/TransportEvent.java	2017-03-05 16:53:41.550682300 +0100
+@@ -68,7 +68,7 @@
+ 
+   /**
+    * Constructor.
+-   * @param source the transport
++   * @param transport the transport
+    * @param type the event type
+    * @param validSent the valid sent addresses
+    * @param validUnsent the valid unsent addresses
+diff -ur mail-1.1.2/source/javax/mail/Folder.java mail-1.1.2-javadoc/source/javax/mail/Folder.java
+--- mail-1.1.2/source/javax/mail/Folder.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/Folder.java	2017-03-05 17:00:15.092231810 +0100
+@@ -577,7 +577,7 @@
+ 
+   /**
+    * Sets the specified flags on each specified message.
+-   * @param msgnums the messages
++   * @param msgs the messages
+    * @param flag the flags to be set
+    * @param value set the flags to this value
+    * @exception IllegalStateException if this folder is closed or READ_ONLY
+@@ -694,7 +694,7 @@
+    * Searches this folder for messages matching the specified search term.
+    * Returns the matching messages.
+    * @param term the search term
+-   * @exception SearchException if there was a problem with the search
++   * @exception javax.mail.search.SearchException if there was a problem with the search
+    * @exception FolderNotFoundException if this folder does not exist
+    * @exception IllegalStateException if this folder is closed
+    */
+@@ -710,7 +710,7 @@
+    * Returns the matching messages.
+    * @param term the search term
+    * @param msgs the messages to be searched
+-   * @exception SearchException if there was a problem with the search
++   * @exception javax.mail.search.SearchException if there was a problem with the search
+    * @exception IllegalStateException if this folder is closed
+    */
+   public Message[] search(SearchTerm term, Message[] msgs)
+diff -ur mail-1.1.2/source/javax/mail/internet/HeaderTokenizer.java mail-1.1.2-javadoc/source/javax/mail/internet/HeaderTokenizer.java
+--- mail-1.1.2/source/javax/mail/internet/HeaderTokenizer.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/internet/HeaderTokenizer.java	2017-03-05 16:53:19.507075949 +0100
+@@ -223,7 +223,7 @@
+    * by <code>next()</code>.
+    * Invoking this method multiple times returns successive tokens,
+    * until <code>next()</code> is called.
+-   * @param ParseException if the parse fails
++   * @exception ParseException if the parse fails
+    */
+   public Token peek()
+     throws ParseException
+diff -ur mail-1.1.2/source/javax/mail/internet/InternetAddress.java mail-1.1.2-javadoc/source/javax/mail/internet/InternetAddress.java
+--- mail-1.1.2/source/javax/mail/internet/InternetAddress.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/internet/InternetAddress.java	2017-03-05 16:53:02.153527732 +0100
+@@ -208,7 +208,7 @@
+    * the specified charset as per RFC 2047.
+    * @param name the personal name
+    * @param charset the charset to be used for any encoding
+-   * @param UnsupportedEncodingException if charset encoding fails
++   * @exception UnsupportedEncodingException if charset encoding fails
+    */
+   public void setPersonal(String name, String charset)
+     throws UnsupportedEncodingException
+diff -ur mail-1.1.2/source/javax/mail/internet/MimeBodyPart.java mail-1.1.2-javadoc/source/javax/mail/internet/MimeBodyPart.java
+--- mail-1.1.2/source/javax/mail/internet/MimeBodyPart.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/internet/MimeBodyPart.java	2017-03-05 16:45:12.271065297 +0100
+@@ -277,7 +277,7 @@
+ 
+   /**
+    * Sets the Content-Disposition header field of this part.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -349,7 +349,7 @@
+ 
+   /**
+    * Sets the Content-ID header field of this part.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -379,7 +379,7 @@
+ 
+   /**
+    * Sets the Content-MD5 header field of this part.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -429,7 +429,7 @@
+   /**
+    * Sets the Content-Language header of this part.
+    * @param languages the array of language tags
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -484,7 +484,7 @@
+    * If <code>description</code> contains non US-ASCII characters, it will
+    * be encoded using the platform default charset.
+    * @param description the content description
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -502,7 +502,7 @@
+    * be encoded using the specified charset.
+    * @param description the content description
+    * @param charset the charset used for encoding
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -579,7 +579,7 @@
+ 
+   /**
+    * Sets the filename associated with this body part.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -693,7 +693,7 @@
+ 
+   /**
+    * Sets the content of this part using the specified data handler.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -714,7 +714,7 @@
+    * installed and accept objects of the type given.
+    * @param o the content object
+    * @param type the MIME type of the object
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -795,7 +795,7 @@
+   /**
+    * Sets the content of this part to be the specified multipart.
+    * @param mp the multipart content
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -896,7 +896,7 @@
+    * Sets the specified header.
+    * @param name the header name
+    * @param value the header value
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -911,7 +911,7 @@
+    * Adds the specified header.
+    * @param name the header name
+    * @param value the header value
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -925,7 +925,7 @@
+   /**
+    * Removes all headers with the specified name.
+    * @param name the header name
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -968,7 +968,7 @@
+ 
+   /**
+    * Adds an RFC 822 header-line to this part.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+@@ -1011,7 +1011,7 @@
+ 
+   /**
+    * Updates the headers of this part, based on the content.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this body part is obtained 
+    * from a READ_ONLY folder
+diff -ur mail-1.1.2/source/javax/mail/internet/MimeMessage.java mail-1.1.2-javadoc/source/javax/mail/internet/MimeMessage.java
+--- mail-1.1.2/source/javax/mail/internet/MimeMessage.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/internet/MimeMessage.java	2017-03-05 16:45:12.274398671 +0100
+@@ -344,7 +344,7 @@
+   /**
+    * Sets the RFC 822 From header field.
+    * @param address the sender of this message
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -365,7 +365,7 @@
+   /**
+    * Sets the RFC 822 From header field using the value of the
+    * <code>InternetAddress.getLocalAddress</code> method.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -388,7 +388,7 @@
+   /**
+    * Adds the specified addresses to From header field.
+    * @param addresses the senders of this message
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -420,7 +420,7 @@
+   /**
+    * Sets the RFC 822 Sender header field.
+    * @param address the sender of this message
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -484,7 +484,7 @@
+    * @param type the recipient type
+    * @param addresses the addresses, or null to remove recipients of this
+    * type
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -514,7 +514,7 @@
+    * @param type the recipient type
+    * @param addresses the addresses, or null to remove recpients of this
+    * type
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -544,7 +544,7 @@
+    * Adds the given addresses to the recipients of the specified type.
+    * @param type the recipient type
+    * @param addresses the addresses
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -570,7 +570,7 @@
+    * Adds the given addresses to the recipients of the specified type.
+    * @param type the recipient type
+    * @param addresses the addresses
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -612,7 +612,7 @@
+    * Sets the RFC 822 Reply-To header field.
+    * @param addresses the addresses, or <code>null</code> to remove this
+    * header
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -717,7 +717,7 @@
+    * If the subject contains non US-ASCII characters, it will be encoded 
+    * using the platform default charset.
+    * @param subject the subject
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -735,7 +735,7 @@
+    * using the specified charset.
+    * @param subject the subject
+    * @param charset the charset used for any encoding
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -782,7 +782,7 @@
+   /**
+    * Sets the RFC 822 Date header field.
+    * @param date the sent date, or <code>null</code> to remove this header
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -903,7 +903,7 @@
+   /**
+    * Sets the Content-Disposition header field of this message.
+    * @param disposition the disposition value to set, or null to remove
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -979,7 +979,7 @@
+ 
+   /**
+    * Sets the Content-ID header field of this message.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1009,7 +1009,7 @@
+ 
+   /**
+    * Sets the Content-MD5 header field of this message.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1052,7 +1052,7 @@
+    * If the description contains non US-ASCII characters, it will be encoded
+    * using the platform default charset.
+    * @param description the content description
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1071,7 +1071,7 @@
+    * using the specified charset.
+    * @param description the content description
+    * @param charset the charset used for any encoding
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1138,7 +1138,7 @@
+   /**
+    * Sets the Content-Language header of this message.
+    * @param languages the array of language tags
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1219,7 +1219,7 @@
+ 
+   /**
+    * Sets the filename associated with this part.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1334,7 +1334,7 @@
+ 
+   /**
+    * Sets the content of this part using the specified data handler.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1357,7 +1357,7 @@
+    * installed and accept objects of the type given.
+    * @param o the content object
+    * @param type the MIME type of the object
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1435,7 +1435,7 @@
+   /**
+    * Sets the content of this message to be the specified multipart.
+    * @param mp the multipart content
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1674,7 +1674,7 @@
+    * Sets the specified header.
+    * @param name the header name
+    * @param value the header value
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1689,7 +1689,7 @@
+    * Adds the specified header.
+    * @param name the header name
+    * @param value the header value
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1703,7 +1703,7 @@
+   /**
+    * Removes all headers with the specified name.
+    * @param name the header name
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1746,7 +1746,7 @@
+ 
+   /**
+    * Adds an RFC 822 header-line to this message.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1808,7 +1808,7 @@
+ 
+   /**
+    * Sets the flags for this message.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1830,7 +1830,7 @@
+    * Saves any changes to this message.
+    * Header fields in the message are updated appropriately to be consistent
+    * with the message contents.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+@@ -1845,7 +1845,7 @@
+ 
+   /**
+    * Updates the headers of this part, based on the content.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder
+diff -ur mail-1.1.2/source/javax/mail/internet/MimePart.java mail-1.1.2-javadoc/source/javax/mail/internet/MimePart.java
+--- mail-1.1.2/source/javax/mail/internet/MimePart.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/internet/MimePart.java	2017-03-05 16:52:40.973265522 +0100
+@@ -59,7 +59,7 @@
+ 
+   /**
+    * Adds an RFC822 header-line.
+-   * @exception IllegalWriteException if the underlying implementation does not
++   * @exception javax.mail.IllegalWriteException if the underlying implementation does not
+    * support modification
+    * @exception IllegalStateException if this part is obtained from a READ_ONLY
+    * folder
+@@ -109,9 +109,9 @@
+ 
+   /**
+    * Sets the Content-MD5 header value for this part.
+-   * @exception IllegalWriteException if the underlying implementation does not
++   * @exception javax.mail.IllegalWriteException if the underlying implementation does not
+    * support modification
+-   * @param IllegalStateException if this part is obtained from a READ_ONLY 
++   * @exception IllegalStateException if this part is obtained from a READ_ONLY 
+    * folder
+    */
+   void setContentMD5(String md5)
+@@ -128,7 +128,7 @@
+   /**
+    * Sets the Content-Language header of this part.
+    * @param languages the array of language tags
+-   * @exception IllegalWriteException if the underlying implementation does not
++   * @exception javax.mail.IllegalWriteException if the underlying implementation does not
+    * support modification
+    * @exception IllegalStateException if this Part is obtained from a READ_ONLY
+    * folder
+diff -ur mail-1.1.2/source/javax/mail/internet/MimeUtility.java mail-1.1.2-javadoc/source/javax/mail/internet/MimeUtility.java
+--- mail-1.1.2/source/javax/mail/internet/MimeUtility.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/internet/MimeUtility.java	2017-03-05 16:51:58.039400881 +0100
+@@ -82,6 +82,7 @@
+    * <li>If the primary type of this datasource is not "text", then if all the
+    * bytes of its input stream are US-ASCII, the encoding is "7bit". If
+    * there is even one non-US-ASCII character, the encoding is "base64".
++   * </ul>
+    * @param ds the data source
+    * @return "7bit", "quoted-printable" or "base64"
+    */
+@@ -285,7 +286,7 @@
+    * Encodes an RFC 822 "text" token into mail-safe form according to
+    * RFC 2047.
+    * @param text the Unicode string
+-   * @param UnsupportedEncodingException if the encoding fails
++   * @exception UnsupportedEncodingException if the encoding fails
+    */
+   public static String encodeText(String text)
+     throws UnsupportedEncodingException
+@@ -530,7 +531,7 @@
+   /**
+    * Decodes the specified string using the RFC 2047 rules for parsing an
+    * "encoded-word".
+-   * @param eword the possibly encoded value
++   * @param text the possibly encoded value
+    * @exception ParseException if the string is not an encoded-word
+    * @exception UnsupportedEncodingException if the decoding failed
+    */
+@@ -706,7 +707,7 @@
+    * <p>
+    * The HeaderTokenizer class defines two "specials" lists, 
+    * MIME and RFC 822.
+-   * @param word the word to be quoted
++   * @param text the word to be quoted
+    * @param specials the set of special characters
+    */
+   public static String quote(String text, String specials)
+diff -ur mail-1.1.2/source/javax/mail/Message.java mail-1.1.2-javadoc/source/javax/mail/Message.java
+--- mail-1.1.2/source/javax/mail/Message.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/Message.java	2017-03-05 16:45:12.274398671 +0100
+@@ -181,7 +181,7 @@
+    * Sets the identity of the person sending this message, as obtained
+    * from the property "mail.user".
+    * If this property is absent, the system property "user.name" is used.
+-   * @exception IllegalWriteException if the underlying implementation does 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation does 
+    * not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from a 
+    * READ_ONLY folder
+@@ -192,7 +192,7 @@
+   /**
+    * Sets the identity of the person sending this message.
+    * @param address the sender
+-   * @exception IllegalWriteException if the underlying implementation does 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation does 
+    * not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from a 
+    * READ_ONLY folder.
+@@ -203,7 +203,7 @@
+   /**
+    * Adds addresses to the identity of the person sending this message.
+    * @param addresses the senders
+-   * @exception IllegalWriteException if the underlying implementation does 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation does 
+    * not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from a 
+    * READ_ONLY folder.
+@@ -258,7 +258,7 @@
+    * Sets the recipient addresses of the specified type.
+    * @param type the recipient type
+    * @param addresses the addresses
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+@@ -268,7 +268,7 @@
+ 
+   /**
+    * Sets the recipient address of the specified type.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    */
+   public void setRecipient(RecipientType type, Address address)
+@@ -281,7 +281,7 @@
+    * Adds the recipient addresses of the given type.
+    * @param type the recipient type
+    * @param addresses the addresses
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+@@ -291,7 +291,7 @@
+ 
+   /**
+    * Adds the recipient address of the given type.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    */
+   public void addRecipient(RecipientType type, Address address)
+@@ -328,7 +328,7 @@
+   /**
+    * Sets the subject of this message.
+    * @param subject the subject
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+@@ -345,7 +345,7 @@
+   /**
+    * Sets the date this message was sent.
+    * @param date the sent date of this message
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+@@ -384,7 +384,7 @@
+    * are unaffected.
+    * @param flag the flags to be set
+    * @param set the value to be set
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+@@ -396,7 +396,7 @@
+    * Sets the specified flag on this message to the given value.
+    * @param flag the flag to be set
+    * @param set the value to be set
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+@@ -470,7 +470,7 @@
+    * <p>
+    * This method ensures that any header fields are consistent with the
+    * changed message contents.
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    * @exception IllegalStateException if this message is obtained from 
+    * a READ_ONLY folder.
+diff -ur mail-1.1.2/source/javax/mail/Multipart.java mail-1.1.2-javadoc/source/javax/mail/Multipart.java
+--- mail-1.1.2/source/javax/mail/Multipart.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/Multipart.java	2017-03-05 16:45:12.274398671 +0100
+@@ -126,7 +126,7 @@
+    * @param part the body part to remove
+    * @return true if a body part was removed, false otherwise
+    * @exception MessagingException if the multipart has not been configured
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    */
+   public boolean removeBodyPart(BodyPart part)
+@@ -152,7 +152,7 @@
+    * The body parts in this container are numbered starting at 0.
+    * @param index index of the part to remove
+    * @exception IndexOutOfBoundsException if the given index is out of range
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    */
+   public void removeBodyPart(int index)
+@@ -173,7 +173,7 @@
+   /**
+    * Adds a body part to this multipart. 
+    * @param part the body part to be appended
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    */
+   public synchronized void addBodyPart(BodyPart part)
+@@ -195,7 +195,7 @@
+    * The body parts in this container are numbered starting at 0.
+    * @param part the body part to be inserted
+    * @param index where to insert the part
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of existing values
+    */
+   public synchronized void addBodyPart(BodyPart part, int index)
+diff -ur mail-1.1.2/source/javax/mail/Part.java mail-1.1.2-javadoc/source/javax/mail/Part.java
+--- mail-1.1.2/source/javax/mail/Part.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/Part.java	2017-03-05 16:45:12.274398671 +0100
+@@ -117,7 +117,7 @@
+   /**
+    * Sets the disposition of this part.
+    * @param disposition the disposition of this part
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of this header
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -134,7 +134,7 @@
+   /**
+    * Sets the description of this part.
+    * @param description the description of this part
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of this header
+    * @exception IllegalStateException if this Part is obtained from 
+    * a READ_ONLY folder
+@@ -151,7 +151,7 @@
+   /**
+    * Sets the filename associated with this part.
+    * @param filename the filename to associate with this part
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of this header
+    * @exception IllegalStateException if this Part is obtained from 
+    * a READ_ONLY folder
+@@ -189,7 +189,7 @@
+   /**
+    * Sets the content of this part using the specified data handler.
+    * @param dh the data handler for the content
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -202,7 +202,7 @@
+    * the supplied argument must be known to the data handler system.
+    * @param obj a Java object
+    * @param type the MIME content-type of this object
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -214,7 +214,7 @@
+    * Sets the textual content of this part, using a MIME type of
+    * <code>text/plain</code>.
+    * @param text the textual content
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -225,7 +225,7 @@
+   /**
+    * Sets the multipart content of this part.
+    * @param mp the multipart content
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -255,7 +255,7 @@
+    * Sets the value for the specified header name.
+    * @param name the header name
+    * @param value the new value
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of this header
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -267,7 +267,7 @@
+    * Adds the specified value to the existing values for this header name.
+    * @param name the header name
+    * @param value the value to add
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of this header
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+@@ -278,7 +278,7 @@
+   /**
+    * Removes all headers of the specified name.
+    * @param name the header name
+-   * @exception IllegalWriteException if the underlying implementation 
++   * @exception javax.mail.IllegalWriteException if the underlying implementation 
+    * does not support modification of this header
+    * @exception IllegalStateException if this part is obtained from 
+    * a READ_ONLY folder
+diff -ur mail-1.1.2/source/javax/mail/QuotaAwareStore.java mail-1.1.2-javadoc/source/javax/mail/QuotaAwareStore.java
+--- mail-1.1.2/source/javax/mail/QuotaAwareStore.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/QuotaAwareStore.java	2017-03-05 16:58:25.584205083 +0100
+@@ -29,9 +29,9 @@
+ 
+ /**
+  * Interface implemented by mail stores that support quotas.
++ * see RFC 2087
+  *
+  * @author <a href="mailto:dog@gnu.org">Chris Burdess</a>
+- * @see RFC 2087
+  * @version 1.4
+  * @since JavaMail 1.4
+  */
+diff -ur mail-1.1.2/source/javax/mail/Quota.java mail-1.1.2-javadoc/source/javax/mail/Quota.java
+--- mail-1.1.2/source/javax/mail/Quota.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/Quota.java	2017-03-05 16:58:35.470994505 +0100
+@@ -29,9 +29,9 @@
+ 
+ /**
+  * A set of quotas for a given quota root.
++ * see RFC 2087
+  *
+  * @author <a href="mailto:dog@gnu.org">Chris Burdess</a>
+- * @see RFC 2087
+  * @version 1.4
+  * @since JavaMail 1.4
+  */
+diff -ur mail-1.1.2/source/javax/mail/search/FromStringTerm.java mail-1.1.2-javadoc/source/javax/mail/search/FromStringTerm.java
+--- mail-1.1.2/source/javax/mail/search/FromStringTerm.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/search/FromStringTerm.java	2017-03-05 16:50:26.791606050 +0100
+@@ -42,7 +42,7 @@
+ 
+   /**
+    * Constructor.
+-   * @param address the address pattern for comparison
++   * @param pattern the address pattern for comparison
+    */
+   public FromStringTerm(String pattern)
+   {
+diff -ur mail-1.1.2/source/javax/mail/search/RecipientStringTerm.java mail-1.1.2-javadoc/source/javax/mail/search/RecipientStringTerm.java
+--- mail-1.1.2/source/javax/mail/search/RecipientStringTerm.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/search/RecipientStringTerm.java	2017-03-05 16:51:31.359070860 +0100
+@@ -48,7 +48,7 @@
+   /**
+    * Constructor.
+    * @param type the recipient type
+-   * @param address the address pattern for comparison
++   * @param pattern the address pattern for comparison
+    */
+   public RecipientStringTerm(Message.RecipientType type, String pattern)
+   {
+diff -ur mail-1.1.2/source/javax/mail/Session.java mail-1.1.2-javadoc/source/javax/mail/Session.java
+--- mail-1.1.2/source/javax/mail/Session.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/Session.java	2017-03-05 16:57:56.777180784 +0100
+@@ -457,7 +457,7 @@
+    * If an implementation for the protocol isn't found, 
+    * throws NoSuchProviderException
+    * @param protocol Configured protocol(i.e. smtp, imap, etc)
+-   * @param NoSuchProviderException If a provider for the given protocol 
++   * @exception NoSuchProviderException If a provider for the given protocol 
+    * is not found.
+    */
+   public Provider getProvider(String protocol)
+@@ -676,7 +676,7 @@
+    * @param url URLName that represents the desired folder
+    * @exception NoSuchProviderException If a provider for the given URLName 
+    * is not found.
+-   * @param MessagingException if the Folder could not be located or created.
++   * @exception MessagingException if the Folder could not be located or created.
+    */
+   public Folder getFolder(URLName url)
+     throws MessagingException
+@@ -784,12 +784,14 @@
+    * Call back to the application to get the needed user name and password.
+    * The application should put up a dialog something like:
+    * <pre>
+-   Connecting to <protocol> mail service on host <addr>, port <port>.
+-   <prompt>
++   Connecting to protocol mail service on host addr, port port.
++   prompt
+    
+-   User Name: <defaultUserName>
++   User Name: defaultUserName
+    Password:
+-   * @param addr InetAddress of the host. may be null.
++   * </pre>
++   * @param address InetAddress of the host. may be null.
++   * @param port InetAddress port of the host. may be null.
+    * @param protocol protocol scheme(e.g. imap, pop3, etc.)
+    * @param prompt any additional String to show as part of the prompt; may be
+    * null.
+diff -ur mail-1.1.2/source/javax/mail/StoreClosedException.java mail-1.1.2-javadoc/source/javax/mail/StoreClosedException.java
+--- mail-1.1.2/source/javax/mail/StoreClosedException.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/StoreClosedException.java	2017-03-05 16:54:27.544585491 +0100
+@@ -31,7 +31,7 @@
+  * An exception thrown when a method is invoked on a message or folder
+  * whose owner store has been closed for some reason.
+  * <p>
+- * The <code>connect</connect> method may be invoked on the store object to
++ * The <code>connect</code> method may be invoked on the store object to
+  * reconnect, but any references to existing folders and messages should be
+  * considered invalid.
+  *
+diff -ur mail-1.1.2/source/javax/mail/UIDFolder.java mail-1.1.2-javadoc/source/javax/mail/UIDFolder.java
+--- mail-1.1.2/source/javax/mail/UIDFolder.java	2007-04-28 20:52:58.000000000 +0200
++++ mail-1.1.2-javadoc/source/javax/mail/UIDFolder.java	2017-03-05 16:54:07.407669298 +0100
+@@ -39,7 +39,7 @@
+  * than the message number of message <i>y</i>, its UID will also be greater
+  * than that of <i>y</i>.
+  * 
+- * @see RFC 2060 http://www.ietf.org/rfc/rfc2060.txt
++ * RFC 2060 http://www.ietf.org/rfc/rfc2060.txt
+  * @author <a href="mailto:dog@gnu.org">Chris Burdess</a>
+  * @version 1.4
+  */
