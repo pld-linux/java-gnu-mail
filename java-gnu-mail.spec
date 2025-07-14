@@ -53,7 +53,7 @@ Dokumentacja API GNU JavaMail.
 
 %prep
 %setup -q -n mail-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal}
