@@ -62,9 +62,11 @@ Dokumentacja API GNU JavaMail.
 %{__autoconf}
 %{__automake}
 unset CLASSPATH || :
-export JAVAC=%{javac}
-export JAVA=%{java}
-%configure
+%configure \
+	JAVA="%{java}" \
+	JAVAC="%{javac}" \
+	JAVADOC="%{javadoc}" \
+	JAR="%{jar}"
 
 %{__make} -j1
 %{__make} -j1 javadoc
