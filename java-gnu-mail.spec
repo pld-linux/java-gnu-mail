@@ -16,7 +16,7 @@ BuildRequires:	automake
 BuildRequires:	java-gnu-activation
 BuildRequires:	java-gnu-inetlib >= 1.1.2-2
 BuildRequires:	jpackage-utils
-BuildRequires:	rpmbuild(macros) >= 1.556
+BuildRequires:	rpmbuild(macros) >= 2.021
 %buildrequires_jdk
 Requires:	jre
 Provides:	java(javamail) = 1.3
