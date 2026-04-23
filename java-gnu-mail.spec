@@ -18,7 +18,6 @@ BuildRequires:	java-gnu-inetlib >= 1.1.2-2
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 2.021
 %buildrequires_jdk
-Requires:	jre
 Provides:	java(javamail) = 1.3
 Obsoletes:	javamail
 BuildArch:	noarch
@@ -62,11 +61,7 @@ Dokumentacja API GNU JavaMail.
 %{__autoconf}
 %{__automake}
 unset CLASSPATH || :
-%configure \
-	JAVA="%{java}" \
-	JAVAC="%{javac}" \
-	JAVADOC="%{javadoc}" \
-	JAR="%{jar}"
+%configure
 
 %{__make} -j1
 %{__make} -j1 javadoc
